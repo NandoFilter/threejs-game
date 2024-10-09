@@ -9,7 +9,9 @@ const camera = new THREE.PerspectiveCamera(
   1000
 );
 
-camera.position.set(4.61, 2.74, 8);
+let cameraX = 4.61
+
+camera.position.set(cameraX, 2.74, 8);
 
 const renderer = new THREE.WebGLRenderer({
   alpha: true,
@@ -257,7 +259,11 @@ window.addEventListener("keydown", (event) => {
         cube.velocity.y = 0.08;
         cube.canJump = false;
       }
-
+      break;
+    case "ControlLeft":
+      cameraX = -cameraX
+      camera.position.set(cameraX, 2.74, 8);
+      camera.lookAt(scene.position);
       break;
   }
 });
