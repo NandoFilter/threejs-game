@@ -1,0 +1,113 @@
+body { 
+  margin: 0;
+  background: #0c4a6e;
+}
+
+.ui-element {
+  position: absolute;
+  color: white;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+#controls {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  font-family: Arial, sans-serif;
+}
+
+#keysRow {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.keyButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #333;
+
+  border-radius: 10px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.keyButton.pressed {
+  background-color: #555;
+}
+
+.letter {
+  width: 50px;
+  height: 50px;
+}
+
+.space {
+  width: 175px;
+  height: 50px;
+}
+
+#timer {
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#best-time {
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  color: #FFD700;
+}
+
+#game-over {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 48px;
+  font-weight: bold;
+  display: none;
+}
+
+#restart-button {
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  padding: 10px 20px;
+  display: none;
+  background-color: #6308cc;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: #4d04a0;
+  }
+}
+
+.control-button {
+  bottom: 10px;
+  transform: translateX(-50%);
+  font-size: 18px;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  border: none;
+  cursor: pointer;
+  position: fixed;
+}

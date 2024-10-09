@@ -8,6 +8,7 @@ const camera = new THREE.PerspectiveCamera(
   0.1,
   1000
 );
+
 camera.position.set(4.61, 2.74, 8);
 
 const renderer = new THREE.WebGLRenderer({
@@ -21,19 +22,10 @@ document.body.appendChild(renderer.domElement);
 const controls = new OrbitControls(camera, renderer.domElement);
 
 class Box extends THREE.Mesh {
-  constructor({
-    width,
-    height,
-    depth,
-    color = "#00ff00",
-    velocity = { x: 0, y: 0, z: 0 },
-    position = { x: 0, y: 0, z: 0 },
-    zAcceleration = false,
-  }) {
-    super(
-      new THREE.BoxGeometry(width, height, depth),
-      new THREE.MeshStandardMaterial({ color })
-    );
+  constructor(
+    { width, height, depth, color = "#00ff00", velocity = { x: 0, y: 0, z: 0 }, position = { x: 0, y: 0, z: 0 }, zAcceleration = false}
+  ) {
+    super(new THREE.BoxGeometry(width, height, depth), new THREE.MeshStandardMaterial({ color }));
 
     this.width = width;
     this.height = height;
@@ -97,13 +89,6 @@ class Box extends THREE.Mesh {
   }
 }
 
-const uiStyle = {
-  position: "absolute",
-  color: "white",
-  textAlign: "center",
-  fontFamily: "Arial, sans-serif",
-};
-
 // Cronômetro e elementos de interface
 let timerInterval;
 let timer;
@@ -112,54 +97,48 @@ let gameStarted = false;
 let gameOver = false;
 
 const timerElement = document.createElement("div");
-Object.assign(timerElement.style, uiStyle, {
-  top: "10px",
-  left: "50%",
-  transform: "translateX(-50%)",
-  fontSize: "24px",
-  fontWeight: "bold",
-});
+timerElement.id = "timer";
+timerElement.classList.add("ui-element");
 document.body.appendChild(timerElement);
 
 const bestTimeElement = document.createElement("div");
-Object.assign(bestTimeElement.style, uiStyle, {
-  top: "40px",
-  left: "50%",
-  transform: "translateX(-50%)",
-  fontSize: "20px",
-  color: "#FFD700",
-});
+bestTimeElement.id = "best-time";
+bestTimeElement.classList.add("ui-element");
 document.body.appendChild(bestTimeElement);
 
 const gameOverElement = document.createElement("div");
-Object.assign(gameOverElement.style, uiStyle, {
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  fontSize: "48px",
-  fontWeight: "bold",
-  display: "none",
-});
+gameOverElement.id = "game-over";
+gameOverElement.classList.add("ui-element");
 document.body.appendChild(gameOverElement);
 
 const restartButton = document.createElement("button");
+restartButton.id = "restart-button";
+restartButton.classList.add("ui-element");
 restartButton.textContent = "Restart";
-Object.assign(restartButton.style, uiStyle, {
-  top: "60%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  fontSize: "24px",
-  padding: "10px 20px",
-  display: "none",
-  backgroundColor: "#333",
-  color: "white",
-  border: "none",
-  cursor: "pointer",
-});
 document.body.appendChild(restartButton);
 
 restartButton.addEventListener("click", () => {
   restartGame();
+});
+
+document.addEventListener('keydown', function(event) {
+  const keyPressed = event.key;
+
+  const keyButtonDiv = document.querySelector(`.keyButton[data-key="${keyPressed}"]`);
+
+  if (keyButtonDiv) {
+    keyButtonDiv.style.backgroundColor = '#555';
+  }
+});
+
+document.addEventListener('keyup', function(event) {
+  const keyPressed = event.key;
+
+  const keyButtonDiv = document.querySelector(`.keyButton[data-key="${keyPressed}"]`);
+
+  if (keyButtonDiv) {
+    keyButtonDiv.style.backgroundColor = '#333';
+  }
 });
 
 function startTimer() {
@@ -170,7 +149,7 @@ function startTimer() {
 
     timerElement.textContent = `Time: ${timer}s`;
 
-    if (bestTime !== null) {
+    if (bestTime !== 0) {
       bestTimeElement.textContent = `Best Time: ${bestTime}s`;
     }
   }, 100);
@@ -179,9 +158,9 @@ function startTimer() {
 function stopTimer() {
   clearInterval(timerInterval);
 
-  const elapsed = ((Date.now() - timer) / 1000).toFixed(1);
+  const elapsed = parseFloat(timer);
 
-  if (bestTime === null || elapsed > bestTime) {
+  if (bestTime === 0 || elapsed > bestTime) {
     bestTime = elapsed;
   }
 }

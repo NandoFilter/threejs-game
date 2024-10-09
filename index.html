@@ -3,15 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport">
-  <style>
-    body { 
-      margin: 0;
-      background: #0c4a6e;
-    }
-  </style>
+  <link rel="stylesheet" href="./src/style.css">
   <title>My first three.js app</title>
 </head>
 <body>
+  <div id="controls">
+    <div class="keyButton letter" data-key="w">W</div>
+    <div id="keysRow">
+      <div class="keyButton letter" data-key="a">A</div>
+      <div class="keyButton letter" data-key="s">S</div>
+      <div class="keyButton letter" data-key="d">D</div>
+    </div>
+    <div class="keyButton space" data-key=" ">Space</div>
+  </div>
+
   <script type="importmap">
     {
       "imports": {
