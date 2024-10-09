@@ -254,16 +254,16 @@ window.addEventListener("keydown", (event) => {
     case "KeyW":
       keys.w.pressed = true;
       break;
+    case "ShiftLeft":
+      cameraX = -cameraX
+      camera.position.set(cameraX, 2.74, 8);
+      camera.lookAt(scene.position);
+      break;
     case "Space":
       if (cube.canJump) {
         cube.velocity.y = 0.08;
         cube.canJump = false;
       }
-      break;
-    case "ShiftLeft":
-      cameraX = -cameraX
-      camera.position.set(cameraX, 2.74, 8);
-      camera.lookAt(scene.position);
       break;
   }
 });
