@@ -260,7 +260,7 @@ window.addEventListener("keydown", (event) => {
         cube.canJump = false;
       }
       break;
-    case "ControlLeft":
+    case "ShiftLeft":
       cameraX = -cameraX
       camera.position.set(cameraX, 2.74, 8);
       camera.lookAt(scene.position);
