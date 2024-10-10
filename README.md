@@ -1,3 +1,3 @@
 # Jogo criado em JavaScript com a biblioteca Three.js
 
-### Para jogá-lo, basta acessar este [link](https://github.com/NandoFilter/threejs-game).
+### Para jogar, basta acessar este [link](https://nandofilter.github.io/threejs-game/).
